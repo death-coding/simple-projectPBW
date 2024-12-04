@@ -1,9 +1,30 @@
 // Toggle class active untuk hamburger menu
 const navbarNav = document.querySelector(".navbar-nav");
-// ketika hamburger menu di klik
-document.querySelector("#hamburger-menu").onclick = () => {
+
+// Ketika hamburger menu di klik
+document.querySelector("#hamburger-menu").onclick = (e) => {
+  e.preventDefault(); // Mencegah reload halaman
   navbarNav.classList.toggle("active");
 };
+
+// Klik di luar hamburger menu untuk menutup menu
+document.addEventListener("click", (e) => {
+  const hamburgerMenu = document.querySelector("#hamburger-menu");
+
+  // Jika klik terjadi di luar navbar dan hamburger menu, tutup menu
+  if (!navbarNav.contains(e.target) && !hamburgerMenu.contains(e.target)) {
+    navbarNav.classList.remove("active");
+  }
+});
+
+// Menutup menu ketika salah satu tautan di dalam navbar diklik
+const navbarLinks = navbarNav.querySelectorAll("a");
+navbarLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    navbarNav.classList.remove("active");
+  });
+});
+
 
 // Toggle class active untuk search form
 const searchForm = document.querySelector(".search-form");
@@ -103,7 +124,7 @@ function validateForm() {
 
   // Cek jika ada input yang kosong
   if (name === "" || email === "" || phone === "") {
-    alert("Semua Data Harus Di isi !!!");
+    alert("Mohon lengkapi semua data sebelum mengirim.");
     return false;
   }
 

@@ -128,7 +128,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('/img/header.jpg') no-repeat center center/cover;
+    background: url('img/header.jpg') no-repeat center center/cover;
     color: white;
     text-align: center;
 }
@@ -614,7 +614,7 @@ footer .credit a {
         top: 100%;
         right: -100%;
         background-color: #fff;
-        width: 30rem;
+        width: 20rem;
         height: 100vh;
         transition: 0.3s;
     }
