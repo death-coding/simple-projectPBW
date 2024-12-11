@@ -55,62 +55,6 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// Modal Box
-const itemDetailModal = document.querySelector("#item-detail-modal");
-const itemDetailButtons = document.querySelectorAll(".item-detail-button");
-
-// Update modal content
-const updateModalContent = (data) => {
-  const modalImage = itemDetailModal.querySelector("img");
-  const modalTitle = itemDetailModal.querySelector("h3");
-  const modalDescription = itemDetailModal.querySelector("p");
-  const modalStars = itemDetailModal.querySelector(".product-stars");
-
-  // Update image, title, and description
-  modalImage.src = data.image;
-  modalImage.alt = data.name;
-  modalTitle.textContent = data.name;
-  modalDescription.textContent = data.description;
-
-  // Update stars
-  modalStars.innerHTML = ""; // Clear existing stars
-  for (let i = 0; i < 5; i++) {
-    const star = document.createElement("i");
-    star.setAttribute("data-feather", "star");
-    star.classList.add(i < data.stars ? "star-full" : "star");
-    modalStars.appendChild(star);
-  }
-  feather.replace(); // Reinitialize Feather icons
-};
-
-// Handle click event
-itemDetailButtons.forEach((btn) => {
-  btn.onclick = (e) => {
-    e.preventDefault();
-    const productData = {
-      name: btn.getAttribute("data-name"),
-      description: btn.getAttribute("data-description"),
-      image: btn.getAttribute("data-image"),
-      stars: parseInt(btn.getAttribute("data-stars")),
-    };
-    updateModalContent(productData);
-    itemDetailModal.style.display = "flex";
-  };
-});
-
-// Close modal
-document.querySelector(".modal .close-icon").onclick = (e) => {
-  e.preventDefault();
-  itemDetailModal.style.display = "none";
-};
-
-// Close modal when clicking outside
-window.onclick = (e) => {
-  if (e.target === itemDetailModal) {
-    itemDetailModal.style.display = "none";
-  }
-};
-
 
 // Konfirmasi Email
 function validateForm() {
